@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragmnet="head">
+<meta charset="ISO-8859-1">
+<title>CursoIndra</title>
+<link th:href= "@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css}"  rel="stylesheet">
+</head>
+<body>
+ <!-- BARRA DE NAVEGACION -->
+ <header class= "py-2 text-center bg-light">
+ 		<div class="alert alert-primary" th:if="${msj}"role="alert"><p th:text="${msj}"></p></div>
+ 		<h3 class="text bg-light">Empleados</h3>
+  </header> 
+     
+   <!-- CONTENIDO -->
+ <div class="container"> 
+   	<div class="row">
+ 	   <div class="col-md-12 ">          	
+ 	   		<p class="text-end"> 
+ 	   			<a class="btn btn-primary" th:href="@{/agregar/emple}">Agregar</a> 
+ 	   		</p>
+ 	   		<h4 class="text-muted">Lista de empleados</h4>
+ 	   		<div class="table-responsive-sm ">
+  			<table class="table ">
+  			
+  				<thead>
+			    	<tr>
+			      		<th scope="col">Nombre</th>
+			      		<th scope="col">Apellido</th>
+			      		<th scope="col">Email</th>
+			      		<th scope="col">Telefono</th>
+			      		
+			      		<th scope="col">Trabajo</th>
+			      		<th scope="col">Salario</th>
+			       		<!--  <th scope="col">Manager</th>-->
+			      		<th scope="col">Departamento</th>
+			      		<th scope="col"></th>
+			      		<th scope="col"></th>
+			      		<th scope="col"></th>
+			    	</tr>
+			     </thead>
+			    <tbody th:each="emple:${empleados}">
+			      <tr>    
+			     	 <td th:text="${emple.firstName}"></td>
+			      	 <td th:text="${emple.lastName}"></td>
+			      	 <td th:text="${emple.email}"></td>
+			       	 <td th:text="${emple.phoneNumber}"></td>
+			       	 <td th:text="${emple.jobs.job_title}"></td>
+			         <td th:text="${emple.salary}"></td>
+			        <!--  <td th:text="${emple.manager_id} ? *{emple.first_name  + ' ' + emple.last_name}: 'Sin registro'"  th:selected="${emple.employee_id == emple.manager_id}"></td>
+			          -->
+			         <td th:text="${emple.depas != null} ? *{emple.depas.department_name}: 'Sin registro'"></td>
+			          <td>
+			         	<a class="btn btn-success" th:href="@{/detalles/emple/{id}(id=${emple.employeeId})}">Ver</a>
+			         </td>
+			         
+			         <td>
+                		<a class="btn btn-warning" th:href="@{/editar/emple/{id}(id=${emple.employeeId})}">Editar</a>
+			         </td>
+			         
+			         <td>
+			         	<a class="btn btn-danger" th:href="@{/borrrar/emple/{id}(id=${emple.employeeId})}">Eliminar</a>
+			         </td>
+			         
+			      </tr>
+			    </tbody>
+  			  </table>
+  			 </div>
+  	   </div>
+  	 </div>
+   </div>
+
+    
+  
+  <!-- PIE DE PAGINA -->
+  <footer th:fragment="footer"></footer>
+    
+	
+	
+
+</body>
+</html>

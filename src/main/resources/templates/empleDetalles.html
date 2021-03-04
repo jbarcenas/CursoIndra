@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragmnet="head">
+<meta charset="ISO-8859-1">
+<title>CursoIndra</title>
+<link th:href= "@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css}"  rel="stylesheet">
+</head>
+<body>
+ <!-- BARRA DE NAVEGACION -->
+ <header class= "py-2 text-center bg-light">
+ 		<div class="alert alert-primary" th:if="${msj}"role="alert"><p th:text="${msj}"></p></div>
+ 		<h3 class="text bg-light">Detalles</h3>
+  </header> 
+     
+  
+  <!-- CONTENIDO -->
+  
+  <div class="container">
+          <div class="form-control form-control-lg" th:each="emple:${emple}" >
+           	<div class="row g-3 align-items-center">
+ 	   		  <div class="col-auto">
+    			 <label for="name" class="col-form-label">Nombre completo: </label>
+  			   </div>
+  			   <div class="col-auto">
+    				<span id="name"  th:text="${emple.firstName  + ' ' + emple.lastName}" class="form-text"></span>
+  				</div>
+  			
+  			  </div>
+  			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="email" class="col-form-label">Email : </label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="email"  th:text="${emple.email}" class="form-text"></span>
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="telefono" class="col-form-label">Telefono :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="email"  th:text="${emple.phoneNumber}" class="form-text"></span>
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="job" class="col-form-label">Trabajo  :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="job"  th:text="${emple.jobs.job_title}" class="form-text"></span>
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="salary" class="col-form-label">Salario  :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="salary"  th:text="${emple.salary}" class="form-text"></span>
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="comision" class="col-form-label">Comision  :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="comision"  th:text="${emple.commissionPct == null} ?  '0': *{emple.commission_pct} " class="form-text"></span>
+  				</div>
+   			  </div>
+   			   <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="manager" class="col-form-label">Manager  :</label>
+   			   	</div>
+  			   	<div class="col-auto">
+    				<span id="manager"  th:text="${emple.managerId} ? *{emple.firstName  + ' ' + emple.lastName}: 'Sin registro'"  th:selected="${emple.managerId == emple.employeeId}" class="form-text"></span>
+    				
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="depa" class="col-form-label">Departamento :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="depa"  th:text="${emple.depas != null} ? *{emple.depas.department_name}: 'Sin registro'" class="form-text"></span>
+  				</div>
+   			  </div>
+   			  <div class="row g-3 align-items-center">
+ 	   		    <div class="col-auto">
+    			  <label for="fecha" class="col-form-label">Fecha de contratacion :</label>
+  			   	</div>
+  			   	<div class="col-auto">
+    				<span id="fecha"  th:text="${emple.hireDate}" class="form-text"></span>
+  				</div>
+   			  </div>
+            <div class="form-group py-1">     
+            	<a class="btn btn-success" th:href="@{/empleados}">Atras</a>
+           </div>
+        </div>
+    </div>
+   
+
+  
+  <!-- PIE DE PAGINA -->
+  <footer th:fragment="footer"></footer>
+    
+	
+	
+
+</body>
+</html>

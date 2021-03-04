@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragmnet="head">
+<meta charset="ISO-8859-1">
+<title>CursoIndra</title>
+<link th:href= "@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css}"  rel="stylesheet">
+</head>
+<body>
+ <!-- BARRA DE NAVEGACION -->
+  <header th:fragment="header">
+    
+  </header>
+  
+  <!-- CONTENIDO -->
+  
+  <div class="container">
+    <h3>
+   <small class="text-muted">Registro de empleados</small>
+   </h3>
+  
+  <div class="card">
+	  <div class="card-body">
+	       <table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">Extension</th>
+			      <th scope="col">Codigo isd</th>
+			      <th scope="col">Numero</th>
+			      <th scope="col">Tipo</th>
+			      <th scope="col">Empleado id</th>
+			    </tr>
+			  </thead>
+			  <tbody th:each="phon:${phone}">
+			    <tr>    
+			      <td th:text="${phon.extension}"></td>
+			      <td th:text="${phon.isd_code}"></td>
+			      <td th:text="${phon.phone_number}"></td>
+			      <td th:text="${phon.type}"></td>
+			       <td th:text="${phon.employee_id}"></td>
+			    </tr>
+			    <tr>
+			    
+			  </tbody>
+		  </table>
+	  		<button type="submit" class="btn btn-primary mb-3">Agregar</button>
+	    </div>
+    </div>
+  
+  </div>
+  
+  <!-- PIE DE PAGINA -->
+  <footer th:fragment="footer"></footer>	
+
+
+</body>
+</html>
