@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.indra.model.Departaments;
 import com.indra.model.Employees;
 import com.indra.model.Jobs;
+import com.indra.model.Usuario;
 import com.indra.service.DepartmentsService;
 import com.indra.service.EmployeesService;
 import com.indra.service.JobService;
@@ -46,6 +47,9 @@ public class EmployeesController {
 	private List<Departaments> registroDe = new ArrayList<Departaments>();
 	private final static Logger Log =  LoggerFactory.getLogger(EmployeesController.class);
 	   
+	
+	 
+	
 	@GetMapping("/empleados")
 	public String empleados(Model modelo) {
 			registroEm = serviceE.buscar();	
@@ -118,12 +122,13 @@ public class EmployeesController {
 	public String detallesEmple(@PathVariable("id") int id, Model modelo) {
 		registroJobs = serviceJ.buscar();
 		registroDe = serviceD.buscar();
-	
+		registroEm = serviceE.buscar();
 		for(Employees emple : serviceE.buscar()) {
 	    	if(emple.getEmployeeId()==id) {
 	    		modelo.addAttribute("emple", emple);
 	    		modelo.addAttribute("jobs", registroJobs);
 	    		modelo.addAttribute("depas", registroDe);
+	    		modelo.addAttribute("empleado", registroEm );
 	    	}
 	   }
 		

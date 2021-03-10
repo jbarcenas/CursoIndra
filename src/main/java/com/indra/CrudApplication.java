@@ -152,7 +152,7 @@ public class CrudApplication implements CommandLineRunner {
 			//repo.findByFirstnameEndsWith("Lex");
 			
 		
-			
+		/*	
 			for(Employees e :repo.findByLastNameOrFirstName("King", "Lex") ) {
 				System.out.println("Nombre o apellido "+e.toString());
 		    }
@@ -167,7 +167,7 @@ public class CrudApplication implements CommandLineRunner {
 			
 			for(Employees e :repo.findByFirstnameEndsWith("ex")) {
 				System.out.println("que contengan "+e.toString());
-		    }
+		    }*/
 		    	
 		    //System.out.println(serviceD.actualizar(300,dep));
 		    // System.out.println(serviceD.borrar(310));

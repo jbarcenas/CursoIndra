@@ -6,38 +6,70 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table (name = "USERS")
+@Table (name = "USUARIOS")
 public class Usuario {
 		
 		@Id
-		private String username;
+		private String nombreusuario;
 		
-		private String password;
+		private String clave;
 		
-		private int enabled;
+		private String email;
+		
+		private String telefono;
+		
+		private int activo;
+
+		public String getNombreusuario() {
+			return nombreusuario;
+		}
+
+		public void setNombreusuario(String nombreusuario) {
+			this.nombreusuario = nombreusuario;
+		}
+
+		public String getClave() {
+			return clave;
+		}
+
+		public void setClave(String clave) {
+			this.clave = clave;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getTelefono() {
+			return telefono;
+		}
+
+		public void setTelefono(String telefono) {
+			this.telefono = telefono;
+		}
+
+		public int getActivo() {
+			return activo;
+		}
+
+		public void setActivo(int activo) {
+			this.activo = activo;
+		}
+
+		@Override
+		public String toString() {
+			return "Usuario [nombreusuario=" + nombreusuario + ", clave=" + clave + ", email=" + email + ", telefono="
+					+ telefono + ", activo=" + activo + ", getNombreusuario()=" + getNombreusuario() + ", getClave()="
+					+ getClave() + ", getEmail()=" + getEmail() + ", getTelefono()=" + getTelefono() + ", getActivo()="
+					+ getActivo() + "]";
+		}
 
 		
-		public String getUsername() {
-			return username;
-		}
 
-		public void setUsername(String username) {
-			this.username = username;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
-		public int getEnabled() {
-			return enabled;
-		}
-
-		public void setEnabled(int enabled) {
-			this.enabled = enabled;
-		}
+		
+		
 }
