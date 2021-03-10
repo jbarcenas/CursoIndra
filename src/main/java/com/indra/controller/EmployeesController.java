@@ -54,7 +54,7 @@ public class EmployeesController {
 	public String empleados(Model modelo) {
 			registroEm = serviceE.buscar();	
 			modelo.addAttribute("empleados", registroEm);
-		    return "empleados";
+		    return "empleados/empleados";
 	}
 	
 	@GetMapping("/agregar/emple")
@@ -66,7 +66,7 @@ public class EmployeesController {
 		modelo.addAttribute("jobs", registroJobs);
 		modelo.addAttribute("depas", registroDe);
 		modelo.addAttribute("empleado", registroEm );
-		return "agregarEmple";
+		return "empleados/agregarEmple";
 	}
 	
 
@@ -106,7 +106,7 @@ public class EmployeesController {
 	    	}
 	   }
 		
-	    return "editar-emple";
+	    return "empleados/editar-emple";
 	
 	}
 	
@@ -132,7 +132,7 @@ public class EmployeesController {
 	    	}
 	   }
 		
-	    return "empleDetalles";
+	    return "empleados/empleDetalles";
 	
 	}
 	

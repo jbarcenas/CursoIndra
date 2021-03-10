@@ -30,7 +30,19 @@ public class EmployeesServiceImple implements EmployeesService {
 			Employees emple = encuentra.get();
 			for(Employees e : iter) {
 		    	if(e.getEmail().equals(emp.getEmail())){
-		    		return "No se realizo cambio porque ya existe un correo igual";
+		    		emple.setFirstName(emp.getFirstName());
+				    emple.setLastName(emp.getLastName());
+				   
+				    emple.setPhoneNumber(emp.getPhoneNumber());
+				    emple.setHireDate(emp.getHireDate());
+				    emple.setJobs(emp.getJobs());
+				    emple.setSalary(emp.getSalary());
+				    emple.setCommissionPct(emp.getCommissionPct());
+				    emple.setManagerId(emp.getManagerId());
+				    emple.setDepas(emp.getDepas());
+		    		
+		    		repoE.save(emple);
+		    		return "Se realizo cambio";	
 		    	}
 		    }
 			    emple.setFirstName(emp.getFirstName());
