@@ -2,6 +2,7 @@ package com.indra.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -19,6 +20,18 @@ public class Usuario {
 		private String telefono;
 		
 		private int activo;
+
+		@OneToOne(mappedBy="users")
+		private Roles roler;
+		
+		
+		public Roles getRoler() {
+			return roler;
+		}
+
+		public void setRoler(Roles roler) {
+			this.roler = roler;
+		}
 
 		public String getNombreusuario() {
 			return nombreusuario;

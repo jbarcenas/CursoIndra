@@ -34,10 +34,7 @@ public class LoginController {
 	private BCryptPasswordEncoder encoderP;
 	
 	private List<Roles> registro = new ArrayList<Roles>();
-	 @GetMapping("/")
-	    String index(Usuario usuario) {
-	        return usuario != null ? "redirect:/empleados" :"" ;
-	    }
+	 
 	  
 	  
 	  // Login form
@@ -64,21 +61,24 @@ public class LoginController {
 	  public String registrar() {
 		
 			
-	    return "registro";
+	    return "users/registro";
 	  }
 	
 	  
 		@PostMapping("/guardar/user")
 		public String guardarEmple(Usuario user,RedirectAttributes atributes,Model modelo) {
 			  user.setActivo(1);
-			  System.out.println(user.toString());
+			 
 			  user.setClave(encoderP.encode(user.getClave()));
-			  String mensajeG =serviceU.guardar(user);
-			 Roles rols =new Roles();
+			  
+			  Roles rols = new Roles();
 			  rols.setNombreusuario(user.getNombreusuario());
 			  rols.setRol("invitado");
+			  user.setRoler(rols);;
+			  //rols.setRol("invitado");
+			  String mensajeG =serviceU.guardar(user);
 			  String mensajeG2= serviceRol.guardar(rols);
-			  atributes.addFlashAttribute("msj", mensajeG+ mensajeG2);
+			  atributes.addFlashAttribute("msj", mensajeG);
 
 			return "redirect:/login";
 		}
@@ -89,8 +89,8 @@ public class LoginController {
 		public String empleados(Model modelo) {
 				
 				modelo.addAttribute("users", serviceU.buscar());
-				modelo.addAttribute("roles", serviceRol.buscar());
-			    return "usuarios";
+				
+			    return "users/usuarios";
 		}
 		
 		
@@ -106,7 +106,7 @@ public class LoginController {
 			 	
 		    
 			
-		    return "editar-user";
+		    return "users/editar-user";
 		
 		}
 		
@@ -115,6 +115,7 @@ public class LoginController {
 			    //users.setClave(encoderP.encode(users.getClave()));
 			    Roles rols =new Roles();
 				rols.setRol(roles);
+				System.out.println(users.toString());
 				String mensajeG2= serviceRol.actualizar(username, rols);
 			    String mensajeG = serviceU.actualizar(username, users);
 				atributes.addFlashAttribute("msj", mensajeG);

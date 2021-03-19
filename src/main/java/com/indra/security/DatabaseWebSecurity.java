@@ -58,6 +58,7 @@ public class DatabaseWebSecurity  extends WebSecurityConfigurerAdapter{
 	 		//Vistas publicas sin autorizacion/autenticacion
 	 		
 	 		.antMatchers("/registro","/login","/guardar/user").permitAll()
+	 		.antMatchers("/depa","/prueba").permitAll()
 	 		//URL que requieran autorizacion/autenticacion
 	 		.antMatchers("/agregar/emple").hasAuthority("admin")
 	 		.antMatchers("/editar/emple/**").hasAuthority("admin")

@@ -120,15 +120,30 @@ public class EmployeesController {
 	
 	@GetMapping("/detalles/emple/{id}")
 	public String detallesEmple(@PathVariable("id") int id, Model modelo) {
-		registroJobs = serviceJ.buscar();
+		/*registroJobs = serviceJ.buscar();
 		registroDe = serviceD.buscar();
-		registroEm = serviceE.buscar();
+		registroEm = serviceE.buscar();*/
 		for(Employees emple : serviceE.buscar()) {
 	    	if(emple.getEmployeeId()==id) {
-	    		modelo.addAttribute("emple", emple);
-	    		modelo.addAttribute("jobs", registroJobs);
-	    		modelo.addAttribute("depas", registroDe);
-	    		modelo.addAttribute("empleado", registroEm );
+	    		if(emple.getManagerId() == null) {
+	    			modelo.addAttribute("emple", emple);
+    			}else {
+	    		
+	    		for(Employees empleado : serviceE.buscar()) {
+	    			
+	    			if(empleado.getEmployeeId()==emple.getManagerId()) {
+	    				modelo.addAttribute("emple", emple);
+	    				modelo.addAttribute("manager", empleado);
+	    				
+	    			}
+	    		 }
+	    		}
+	    		
+	    		
+	    		
+	    		//modelo.addAttribute("jobs", registroJobs);
+	    		//modelo.addAttribute("depas", registroDe);
+	    	//	modelo.addAttribute("empleado", registroEm );
 	    	}
 	   }
 		

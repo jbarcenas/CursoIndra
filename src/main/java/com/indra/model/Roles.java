@@ -2,6 +2,8 @@ package com.indra.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,19 @@ public class Roles {
 	
 	private String rol;
 
+	@OneToOne
+	@JoinColumn(name="NOMBREUSUARIO")
+	private Usuario users;
 	
+	
+	public Usuario getUsers() {
+		return users;
+	}
+
+	public void setUsers(Usuario users) {
+		this.users = users;
+	}
+
 	public String getNombreusuario() {
 		return nombreusuario;
 	}

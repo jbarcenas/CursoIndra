@@ -4,6 +4,29 @@
 <head th:fragmnet="head">
 <meta charset="ISO-8859-1">
 <title>CursoIndra</title>
+
+<style type="text/css">
+
+
+body, html {
+     
+ 	
+ 	font-family: 'Oxygen', sans-serif;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+}
+ 
+h4 {
+color: #FFFAFA;
+}	
+#linea{
+  color: #FFFAFA;
+}
+#span {
+color: #FFFAFA;
+}
+	
+
+</style>
 <link th:href= "@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css}"  rel="stylesheet">
 </head>
 <body>
@@ -15,87 +38,89 @@
  
   <main class="flex-shrink-0">
   <div class="container">
-  	 <h4 class="mt-3">Informacion de empleado seleccionado</h4>
- 	<div class="mt-2" th:each="emple:${emple}" >
-           	<div class="row g-3 align-items-center">
+  	 <h4 class=" py-3">Informacion de empleado seleccionado</h4>
+ 	<div class="mt-2" th:each="emple:${emple}"  >
+           	<div class="row g-3 align-items-center" id="linea">
  	   		  <div class="col-auto">
     			<label for="name" class="col-form-label">Nombre completo: </label>
   			   </div>
-  			   <div class="col-auto">
-    				<span id="name"  th:text="${emple.firstName  + ' ' + emple.lastName}" class="form-text"></span>
+  			   <div class="col-auto" >
+    				<span id="span"  th:text="${emple.firstName  + ' ' + emple.lastName}" class="form-text"></span>
   				</div>
   			
   			  </div>
-  			  <div class="row g-3 align-items-center">
+  			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
-    			  <label for="email" class="col-form-label">Email : </label>
+    			  <label id="" for="email" class="col-form-label">Email : </label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="email"  th:text="${emple.email}" class="form-text"></span>
+    				<span id="span"  th:text="${emple.email}" class="form-text"></span>
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
     			  <label for="telefono" class="col-form-label">Telefono :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="email"  th:text="${emple.phoneNumber}" class="form-text"></span>
+    				<span id="span"  th:text="${emple.phoneNumber}" class="form-text"></span>
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
     			  <label for="job" class="col-form-label">Trabajo  :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="job"  th:text="${emple.jobs.job_title}" class="form-text"></span>
+    				<span id="span"  th:text="${emple.jobs.job_title}" class="form-text"></span>
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
     			  <label for="salary" class="col-form-label">Salario  :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="salary"  th:text="${emple.salary}" class="form-text"></span>
+    				<span id="span"  th:text="${emple.salary}" class="form-text"></span>
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
     			  <label for="comision" class="col-form-label">Comision  :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="comision"  th:text="${emple.commissionPct == null} ?  '0': *{emple.commission_pct} " class="form-text"></span>
+    				<span id="span"  th:text="${emple.commissionPct } " class="form-text"></span>
   				</div>
    			  </div>
-   			   <div class="row g-3 align-items-center">
+   			   <div class="row g-3 align-items-center"id="linea">
  	   		    <div class="col-auto">
     			  <label for="manager" class="col-form-label">Manager  :</label>
    			   	</div>
   			   	<div class="col-auto"  >
-  			   		 <select  class="row g-3 align-items-center" disabled>
+  			   		<span id="span"  th:text="${emple.managerId !=null} ? *{manager.firstName  + ' ' + manager.lastName}: 'Sin registro'" class="form-text"></span>
+  			   		 
+  			   		 <!-- <select  class="row g-3 align-items-center" disabled>
                      	<option th:each="empleo :${empleado}" th:value="${empleo.employeeId}" 
               			th:text="${emple.managerId} ? *{empleo.firstName  + ' ' + empleo.lastName}: 'Sin registro'" th:selected="${emple.managerId == empleo.employeeId}" >
               			</option>
-    				</select>
+    				</select> -->
     			
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea"> 
  	   		    <div class="col-auto">
     			  <label for="depa" class="col-form-label">Departamento :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="depa"  th:text="${emple.depas != null} ? *{emple.depas.department_name}: 'Sin registro'" class="form-text"></span>
+    				<span id="span"  th:text="${emple.depas != null} ? *{emple.depas.department_name}: 'Sin registro'" class="form-text"></span>
   				</div>
    			  </div>
-   			  <div class="row g-3 align-items-center">
+   			  <div class="row g-3 align-items-center" id="linea">
  	   		    <div class="col-auto">
     			  <label for="fecha" class="col-form-label">Fecha de contratacion :</label>
   			   	</div>
   			   	<div class="col-auto">
-    				<span id="fecha"  th:text="${emple.hireDate}" class="form-text"></span>
+    				<span id="span"  th:text="${emple.hireDate}" class="form-text"></span>
   				</div>
    			  </div>
-            <div class="text-center py-1 col-md-1" >     
+            <div class="text-center py-1 col-md-1"  >     
             	<a class="btn btn-success mt-3" th:href="@{/empleados}">Atras</a>
            </div>
         </div>
@@ -105,7 +130,8 @@
 <!-- PIE DE PAGINA -->
   <div th:insert="fragmento/pie.html :: footer">  </div>
 
- <script th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+ <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js}" ></script>
+ 
 	
 	
 

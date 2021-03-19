@@ -1,38 +1,141 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title>Login page</title>
-   <link th:href= "@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css}"  rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
-  	
-  </head>
-  <body>
-  
-  <div class="container">
-  		
-      <form class="form-signin" method="post"  th:action="@{/login}">
-          <p th:if="${loginError}" class="error" role="alert">Usuario o password incorrectos</p>
-         <p  th:if="${msj}"  role="alert" th:text="${msj}"></p>
-        <h2 class="form-signin-heading">Iniciar sesion</h2>
-        <p>
-          <label for="username" class="sr-only">Usuario</label>
-          <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required="" autofocus="">
-        </p>
-        <p>
-          <label for="password" class="sr-only">Password</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-        </p>
-      	<p>
-        
-        	<button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">Iniciar</button>
-         	  <a class="btn  btn-lg btn-secondary btn-block" th:href="@{/registro}">Agregar</a>
-         <p>
-        
-      </form>
-      
-</div>
-   
-  </body>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragmnet="head">
+<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+<title>CursoIndra</title>
+
+
+<!--  <link th:href="@{css/style.css}"  rel="stylesheet" type="text/css" />-->
+<style type="text/css" >
+
+
+body, html {
+     height: 100%;
+ 	background-repeat: no-repeat;
+ 	
+ 	font-family: 'Oxygen', sans-serif;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+}
+.main{
+ 	margin-top: 70px;
+}
+
+h1.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+	color: #E6E6FA;
+}
+
+hr{
+	width: 10%;
+	color: #E6E6FA;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #E6E6FA;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 11px;
+	text-align: center;
+}
+</style>
+<link th:href="@{//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css}" rel="stylesheet" id="bootstrap-css">
+
+<!------ Include the above in your HEAD tag ---------->
+		<!-- Website Font style -->
+		<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css}">
+		
+		<!-- Fonts -->
+		<link th:href='@{https://fonts.googleapis.com/css?family=Passion+One}' rel='stylesheet' type='text/css'>
+		<link th:href='@{https://fonts.googleapis.com/css?family=Oxygen}' rel='stylesheet' type='text/css'>
+
+		<title>Admin</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Bienvenido</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post"  th:action="@{/login}">
+						<p th:if="${loginError}" class="error" role="alert">Usuario o password incorrectos</p>
+                       <p  th:if="${msj}"  role="alert" th:text="${msj}"></p>
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Usuario</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Escribe tu usuario"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Escribe tu Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="submit" value="Log in" class="btn btn-primary btn-lg btn-block login-button">Ingresar</button>
+						</div>
+						<div class="login-register">
+				            <a th:href="@{/registro}">Crear cuenta</a> <!-- or <a href="reset_password.php">reset password</a> -->
+				         </div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+	</body>
+	
+	
+	<script th:src="@{//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js}"></script>
+    <script th:src="@{//code.jquery.com/jquery-1.11.1.min.js}"></script>
 </html>
