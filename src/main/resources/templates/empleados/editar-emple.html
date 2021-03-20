@@ -51,11 +51,11 @@ color: #FFFAFA;
             
              <div class="form-group py-1">
                 <label for="nombre">Email</label>
-                <input id ="text" type="text" th:field="${emple.email}" name="email" class="form-control"  placeholder="Email" required>
+                <input id ="email" type="text" th:field="${emple.email}" name="email" class="form-control"  placeholder="Email" required maxlength="15"  size="15">
             </div>
             <div class="form-group py-1">
                 <label for="nombre">Telefono</label>
-                <input id ="text" type="text" th:field="${emple.phoneNumber}" name="phoneNumber" class="form-control"  placeholder="Telefono" required>
+                <input id ="text" type="text" th:field="${emple.phoneNumber}" name="phoneNumber" class="form-control"  placeholder="Telefono" required pattern="[0-9]+"">
             </div>
             <div class="form-group py-1">
                 <label for="nombre">Fecha de contratacion</label>
@@ -85,7 +85,7 @@ color: #FFFAFA;
             </div>
            <div class="form-group py-1">
            <label for="commission_pct">Comision</label>     
-            <input id ="text" type="text" name="commissionPct" class="form-control"  placeholder="Ingresa comision" >    
+            <input id ="text" type="text" name="commissionPct" class="form-control"  placeholder="Ingresa comision" pattern= "[0-9]">    
            </div> 
            
             <div class="form-group py-1">

@@ -51,11 +51,11 @@ color: #FFFAFA;
             
              <div class="form-group py-1">
                 <label for="email">Email</label>
-                <input id="text"  type="text" name="email" class="form-control"  placeholder="Ingresa email" >
+                <input id="email"  type="text" name="email" class="form-control"  placeholder="Ingresa email" maxlength="15"  size="15">
             </div>
             <div class="form-group py-1">
                 <label for="telefono">Telefono</label>
-                <input id="text"  type="text" name="phoneNumber" class="form-control"  placeholder="Ingresa telefono" >
+                <input id="text"  type="text" name="phoneNumber" class="form-control"  placeholder="Ingresa telefono"  pattern="[0-9]+" >
             </div>
         
            <div class="form-group py-1 ">
@@ -84,7 +84,7 @@ color: #FFFAFA;
             </div>
            <div class="form-group py-1">
            <label for="commission_pct">Comision</label>     
-            <input id="text"  type="text" name="commissionPct" class="form-control"  placeholder="Ingresa comision" >    
+            <input id="text"  type="text" name="commissionPct" class="form-control"  placeholder="Ingresa comision" pattern= "[0-9]" >    
            </div> 
             <div class="form-group py-1">
                 <label for="text">Elige el departamento</label>

@@ -56,7 +56,7 @@ color: #FFFAFA;
 			     	 <td th:text="${user.nombreusuario}"></td>
 			      	 <td th:text="${user.email}"></td>
 			      	 <td th:text="${user.telefono}"></td>
-			      	 <td th:text="${user.activo}"></td>
+			      	 <td th:text="${user.activo == 1} ?'Activo':'No activo'"></td>
 			      	 <td th:text="${user.roler.rol}"></td>
 			       	 
       
