@@ -80,7 +80,7 @@ public class CrudApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-	
+	/*
 		if(serviceE.buscar() !=null )
 			System.out.println("El repositorio se inyecto");
 		

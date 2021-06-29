@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.ObjectError;
+
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.indra.model.Departaments;
 import com.indra.model.Employees;
 import com.indra.model.Jobs;
-import com.indra.model.Usuario;
+
 import com.indra.service.DepartmentsService;
 import com.indra.service.EmployeesService;
 import com.indra.service.JobService;
@@ -58,7 +62,7 @@ public class EmployeesController {
 	}
 	
 	@GetMapping("/agregar/emple")
-	public String agregarEmple(Model modelo){
+	public String agregarEmple(@ModelAttribute("emple")Employees emple,Model modelo){
 		
 		registroJobs = serviceJ.buscar();
 		registroDe = serviceD.buscar();
@@ -71,9 +75,25 @@ public class EmployeesController {
 	
 
 	@PostMapping("/guardar/emple")
-	public String guardarEmple(Employees emple ,RedirectAttributes atributes,Model modelo) {
-		  String mensajeG = serviceE.guardar(emple);
-		  atributes.addFlashAttribute("msj", mensajeG);
+	public String guardarEmple(@Valid @ModelAttribute("emple") Employees emple , BindingResult result,RedirectAttributes atributes,Model modelo) {
+		
+		
+		if (result.hasErrors()) {
+			System.out.println(emple);
+			for (ObjectError error: result.getAllErrors()){
+				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
+			}
+			
+			registroJobs = serviceJ.buscar();
+			registroDe = serviceD.buscar();
+			registroEm = serviceE.buscar();
+			modelo.addAttribute("jobs", registroJobs);
+			modelo.addAttribute("depas", registroDe);
+			modelo.addAttribute("empleado", registroEm );
+			return "empleados/agregarEmple";
+		}
+ 		 String mensajeG = serviceE.guardar(emple);
+		 atributes.addFlashAttribute("msj", mensajeG);
 
 		return "redirect:/empleados";
 	}

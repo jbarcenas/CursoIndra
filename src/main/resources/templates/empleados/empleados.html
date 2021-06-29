@@ -26,9 +26,8 @@ color: #FFFAFA;
  		
  		
   </header> 
-   <div class="alert alert-primary" th:if="${msj}"role="alert"><p th:text="${msj}"></p></div>
- 
- 
+
+   <div th:if="${msj}" class='alert alert-success' th:text="${msj}" role='alert'></div>
    <!-- CONTENIDO -->
  <div class="container py-3" id="contenedor" >
  	<h4 class="text-center py-3">Lista de empleados</h4>

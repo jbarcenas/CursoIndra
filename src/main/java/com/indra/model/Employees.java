@@ -15,32 +15,41 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+
+
 
 
 @Entity
 @Table(name="EMPLOYEES")
 public class Employees {
 	
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "c_generator")
 	@SequenceGenerator(name = "c_generator", sequenceName = "EMPLOYEES_SEQ", allocationSize=1)
 	@Column (name="EMPLOYEE_ID")
 	private int employeeId;
 	
+	@NotEmpty
 	@Column (name="FIRST_NAME")
 	private String firstName;
 	
+	@NotEmpty
 	@Column (name="LAST_NAME")
 	private String lastName;
 	
+	@NotEmpty
+	@Email
 	@Column (name="EMAIL")
 	private String email;
 	
 	@Column (name="PHONE_NUMBER")
 	private String phoneNumber;
 	
+	
+
 	@Column (name="HIRE_DATE")
 	private Date hireDate;
 	//private String job_id;
@@ -51,8 +60,23 @@ public class Employees {
 	@JoinColumn(name="JOB_ID",nullable=false)
 	private Jobs jobs;
 	
+	
+	public List<JobHistory> getListaJobs() {
+		return listaJobs;
+	}
+
+
+
+	public void setListaJobs(List<JobHistory> listaJobs) {
+		this.listaJobs = listaJobs;
+	}
+
+
+
 	@Column (name="SALARY")
 	private Double salary;
+	
+	
 	
 	@Column (name="COMMISSION_PCT")
 	private Double commissionPct;

@@ -38,33 +38,45 @@ color: #FFFAFA;
    	<div class="row">
  	   <div class="col-md-12 " >
  	   	<h4 class="text-center py-3">Agregar empleado</h4>
-          <form class="form-control-lg" th:object="${emple}" th:action="@{/guardar/emple}" method="post">
+          <form class="form-control-lg"  th:action="@{/guardar/emple}" method="post" th:object="${emple}">
+        	  <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+				Por favor corrija los siguientes errores:
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+					</ul>
+				</div>
+        	 
         	 <div class="form-group py-1">
                 <label for="nombre">Nombre</label>
-                <input id="text" type="text" name="firstName" class="form-control"  placeholder="Ingresa el nombre" pattern="[a-zA-Z]+" required>
+                <input id="text" type="text" th:field="*{firstName}" name="firstName" class="form-control"  placeholder="Ingresa el nombre" pattern="[a-zA-Z]+" >
+            	<span class="form-text text-dark " th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
             </div>
             
             <div class="form-group py-1" >
                 <label for="apellido">Apellido</label>
-                <input id="text"  type="text" name="lastName" class="form-control"  placeholder="Ingresa apellido" pattern="[a-zA-Z]+" required>
+                <input id="text"  type="text" th:field="*{lastName}" name="lastName" class="form-control"  placeholder="Ingresa apellido" pattern="[a-zA-Z]+" >
+            	<span class="form-text text-dark " th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
             </div>
             
              <div class="form-group py-1">
                 <label for="email">Email</label>
-                <input id="email"  type="text" name="email" class="form-control"  placeholder="Ingresa email" maxlength="15"  size="15">
+                <input id="email"  type="text" th:field="*{email}" name="email" class="form-control"  placeholder="Ingresa email" maxlength="15"  size="15">
+            	<span class="form-text text-dark " th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             </div>
             <div class="form-group py-1">
                 <label for="telefono">Telefono</label>
-                <input id="text"  type="text" name="phoneNumber" class="form-control"  placeholder="Ingresa telefono"  pattern="[0-9]+" >
+                <input id="text"  type="text" th:field="*{phoneNumber}" name="phoneNumber" class="form-control"  placeholder="Ingresa telefono"  pattern="[0-9]+" >
+            	<span class="form-text text-dark " th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
             </div>
         
            <div class="form-group py-1 ">
                 <label for="fecha">Fecha de contratacion</label>
-                <input id="text"  type="date" name="hireDate" class="form-control"  placeholder="'Ingresa fecha ingreso" required>
+                <input id="text"  type="date"  th:field="*{hireDate}" name="hireDate" class="form-control"  placeholder="'Ingresa fecha ingreso" >
+           		<span class="form-text text-dark " th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}"></span>
             </div>
             <div class="form-group py-1">
                 <label for="manager">Manager</label>
-                   <select id="text"  class="form-select form-select-lg mb-3" name="managerId" required>
+                   <select id="text"  th:field="*{managerId}" class="form-select form-select-lg mb-3" name="managerId" required>
                      	<option th:each="empleo :${empleado}" th:value="${empleo.employeeId}" 
               			th:text="${empleo.firstName  + ' ' + empleo.lastName}">
               			</option>
@@ -72,23 +84,25 @@ color: #FFFAFA;
             </div>
             <div class="form-group py-1">
                 <label for="Job">Seleciona el trabajo</label>
-                   <select  id="text" class="form-select form-select-lg mb-3" name="jobs" required>
+                   <select  id="text" class="form-select form-select-lg mb-3" th:field="*{jobs}" name="jobs" required>
                      	<option th:each="job :${jobs}" th:value="${job.job_id}" 
-              			th:text="${job.job_title}">
+              			th:text="${job.job_title}"   >
               			</option>
     				</select>
             </div>
              <div class="form-group py-1">
                 <label for="salary">Salario</label>
-                <input id="text"  type="text" name="salary" class="form-control"  placeholder="Ingresa salario" >
+                <input id="text"  type="text" th:field="*{salary}" name="salary" class="form-control"  placeholder="Ingresa salario" >
             </div>
            <div class="form-group py-1">
            <label for="commission_pct">Comision</label>     
-            <input id="text"  type="text" name="commissionPct" class="form-control"  placeholder="Ingresa comision" pattern= "[0-9]" >    
+            <input id="text"  type="text" th:field="*{commissionPct}" name="commissionPct" class="form-control"  placeholder="Ingresa comision"  > 
+            <span class="form-text text-dark  " th:if="${#fields.hasErrors('commissionPct')}" th:errors="*{commissionPct}"></span>
+           
            </div> 
             <div class="form-group py-1">
                 <label for="text">Elige el departamento</label>
-                   <select  id="text"  class="form-select form-select-lg mb-3" name="depas" >
+                   <select  id="text"  class="form-select form-select-lg mb-3" th:field="*{depas}"  name="depas" >
                      	<option th:each="depa :${depas}" th:value="${depa.department_id}" 
               			th:text="${depa.department_name}">
               			</option>
